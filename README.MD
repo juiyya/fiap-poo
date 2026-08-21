@@ -1,47 +1,51 @@
-# FiapRide - Sistema de Carteira Digital
+# Projetos para a disciplina de Programação Orientada a Objetos (POO).
 
-Este projeto foi desenvolvido para a disciplina de Programação Orientada a Objetos (POO). O objetivo é simular o sistema de carteira digital de uma startup de mobilidade, aplicando os conceitos de encapsulamento, regras de negócio e manipulação de estado dos objetos.
+O objetivo é simular o sistema de carteira digital de uma startup de mobilidade, aplicando os conceitos de encapsulamento, regras de negócio e manipulação de estado dos objetos.
 
-## Estrutura do Projeto
+Como desafio proposto pelo professor desenvolvi o projeto Pet baseado na aula.
 
-O projeto está organizado na seguinte estrutura de pacotes:
-- **`br.com.fiapride.main`**: Contém a classe `SistemaPrincipal`, responsável por ser o ponto de entrada (execução) do programa e testar as funcionalidades.
-- **`br.com.fiapride.model`**: Contém as classes de negócio que modelam o mundo real (`Passageiro` e `Pet`).
+# Projeto - FiapRide
 
-## O que os Objetos Representam?
+a ideia aqui é simular a carteira digital de um app de transporte.
 
-### Classe `Passageiro`
-Representa **um usuário final do aplicativo de transporte**. Assim como um passageiro real possui uma carteira física, o nosso objeto possui um atributo interno `saldo` (sua carteira digital virtual), além de suas informações de identificação, como `nome` e `cpf`.
+## o que o objeto representa
+a classe `Passageiro` representa um usuario real do aplicativo. ele guarda as infos do usuario (nome e cpf) e funciona como uma carteira digital, controlando o `saldo` que a pessoa tem na conta.
 
-### Classe `Pet` (Bônus)
-É uma classe criada de forma autoral para demonstrar a aplicação da mesma lógica de POO ensinada em aula, mas em um domínio diferente. Assim como o passageiro tem regras rígidas para recarga e gasto de saldo, o objeto `Pet` possui suas próprias regras de estado (por exemplo, interagir com níveis de energia ou fome), seguindo os mesmos princípios de validação de dados para garantir que o objeto se comporte de maneira lógica.
+## como a classe funciona e metodos
+o funcionamento é baseado em controlar o dinheiro e nao deixar o sistema aceitar valores invalidos:
 
-## Métodos e Regras de Negócio (`Passageiro`)
+- `adicionarSaldo(valor)`: serve pra colocar dinheiro na conta. tem uma regra de negocio que bloqueia valores negativos ou zerados, pq nao faz sentido depositar dinheiro negativo.
+- `pagarViagem(custo)`: desconta o valor da corrida do saldo. a regra aqui é que o passageiro precisa ter dinheiro suficiente pra pagar, senao o sistema bloqueia a corrida.
 
-A classe `Passageiro` interage com o sistema através de dois métodos principais de controle financeiro:
+## como usar
+pra testar, é so instanciar a classe e chamar os metodos no `SistemaPrincipal`:
 
-- **`adicionarSaldo(double valor)`**
-  - **Como usar:** Deve ser chamado quando o usuário deseja depositar dinheiro no aplicativo (ex: via Pix ou Cartão de Crédito).
-  - **Regra de Negócio:** O sistema bloqueia depósitos com valores negativos ou zerados. Afinal, no mundo real, não faz sentido depositar "-20 reais" na conta.
+```java
+Passageiro passageiro = new Passageiro("Ana", "123.456");
+passageiro.adicionarSaldo(50.0); // recarrega 50
+passageiro.pagarViagem(20.0); // gasta 20, sobra 30
+```
 
-- **`pagarViagem(double custo)`**
-  - **Como usar:** É chamado ao final de uma corrida para descontar o valor da viagem diretamente da carteira do usuário.
-  - **Regra de Negócio:** 
-    1. O custo da corrida deve ser um valor válido (maior que zero).
-    2. O passageiro precisa ter saldo suficiente para cobrir o custo total. Se o saldo for menor que o valor da corrida, a transação é recusada e o saldo não sofre alterações.
+# Projeto - Pet Virtual
 
-## Como testar 
+esse é um projeto autoral aplicando os mesmos conceitos da aula de poo, mas usando um pet virtual no lugar do app de carona.
 
-1. Abra o arquivo `SistemaPrincipal.java` no seu editor.
-2. Dentro do método `main`, instancie os objetos e chame os métodos testando diferentes cenários:
-   ```java
-   // Exemplo de uso:
-   Passageiro julia = new Passageiro("Julia", "111.222.333-44");
-   
-   julia.adicionarSaldo(50.0);  // Sucesso: Saldo vai para 50.0
-   julia.adicionarSaldo(-10.0); // Erro: Regra de negócio impede saldo negativo
-   
-   julia.pagarViagem(30.0);     // Sucesso: Saldo reduz para 20.0
-   julia.pagarViagem(100.0);    // Erro: Saldo insuficiente para a viagem
-   ```
-3. Execute o `SistemaPrincipal.java` para visualizar as validações sendo impressas no console.
+## o que o objeto representa
+a classe `Pet` representa um bichinho virtual. em vez de controlar dinheiro, o objeto controla o estado fisico do bicho. os atributos sao nome, especie e a `energia`, que é o que dita se ele consegue fazer as coisas ou n.
+
+## como a classe funciona e metodos
+a classe controla a energia do pet atraves de 3 acoes principais, todas com regras de negocio pra impedir acoes impossiveis:
+
+- `alimentar(quantidade)`: aumenta a energia do pet. a quantidade de comida tem q ser maior q zero.
+- `brincar(esforco)`: gasta a energia. a regra aqui é q o pet nao pode brincar se o esforco for maior q a energia q ele tem (ele n brinca se tiver cansado).
+- `dormir()`: recupera 10 pontos de energia automaticamente.
+
+## como usar
+é so instanciar o pet no `MainPet` e interagir com ele:
+
+```java
+meuPet.brincar(15.0);
+        meuPet.alimentar(20.0);
+        meuPet.brincar(15.0);
+        meuPet.dormir();
+```
