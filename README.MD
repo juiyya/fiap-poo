@@ -1,4 +1,4 @@
-# Projetos para a disciplina de Programação Orientada a Objetos (POO).
+# Programação Orientada a Objetos (POO).
 
 O objetivo é simular o sistema de carteira digital de uma startup de mobilidade, aplicando os conceitos de encapsulamento, regras de negócio e manipulação de estado dos objetos.
 
