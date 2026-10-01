@@ -3,7 +3,7 @@
 Projeto desenvolvido para o Check Point 2 da disciplina de Object-Oriented Programming.
 
 ## Objetivo
-Diagnosticar e corrigir falhas em um código legado de um sistema, elevando-o aos padrões profissionais de Engenharia de Software.
+Diagnosticar e corrigir falhas em um código legado de um sistema, refatorar e construir uma solução escalável e manutenível, elevando-o aos padrões profissionais de engenharia de software.
 
 ## Refatorações Aplicadas
 - **Clean Code:** Substituição de nomenclaturas confusas por nomes descritivos.
