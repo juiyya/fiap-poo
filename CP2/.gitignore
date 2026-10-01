@@ -1,0 +1,8 @@
+bin/
+*.class
+
+
+*.asta.lock
+
+.DS_Store
+Thumbs.db
