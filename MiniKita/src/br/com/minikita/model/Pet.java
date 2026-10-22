@@ -1,4 +1,4 @@
-package br.com.fiapride.model;
+package br.com.minikita.model;
 
 public class Pet {
     private String nome;
@@ -6,59 +6,66 @@ public class Pet {
     private double energia;
 
     public Pet(String nome, String especie) {
-        this.nome = nome;
-        this.especie = especie;
-        this.energia = 0.0; 
+        this.setNome(nome);
+        this.setEspecie(especie);
+        this.setEnergia(10.0); 
     }
 
-    // acoes
-
-    public void alimentar(double quantidade) {
-        if (quantidade <= 0) {
-            System.out.println("erro: a quantidade de comida deve ser > 0.");
-            return; 
+    private void setEnergia(double valor) {
+        if (valor > 100.0) {
+            this.energia = 100.0;
+            System.out.println("Max level! A energia de " + this.nome + " está no máximo (100.0).");
+        } else if (valor < 0.0) {
+            this.energia = 0.0;
+        } else {
+            this.energia = valor;
         }
-        this.energia += quantidade;
-        System.out.println(this.nome + " comeu! energia subiu para: " + this.energia);
     }
 
-    public void brincar(double esforco) {
-        if (esforco <= 0) {
-            System.out.println("erro: esforço para brincar é inválido.");
-            return;
-        }
-        if (this.energia < esforco) {
-            System.out.println("wrro: energia insuficiente. " + this.nome + " não consegue brincar agora.");
-            return;
-        }
-        this.energia -= esforco;
-        System.out.println(this.nome + " brincou bastante! energia caiu para: " + this.energia);
-    }
-
-    public void dormir() {
-        // dormir recupera 10 pontos
-        this.energia += 10.0;
-        System.out.println(this.nome + " tirou uma soneca. recuperou energia! energia atual: " + this.energia);
+    public double getEnergia() {
+        return this.energia;
     }
 
     public String getNome() {
-        return nome;
+        return this.nome;
     }
 
-    public void setNome(String nome) {
+    private void setNome(String nome) {
         this.nome = nome;
     }
 
     public String getEspecie() {
-        return especie;
+        return this.especie;
     }
 
-    public void setEspecie(String especie) {
+    private void setEspecie(String especie) {
         this.especie = especie;
     }
 
-    public double getEnergia() {
-        return energia;
+    public void alimentar(double quantidade) {
+        if (quantidade <= 0) {
+            System.out.println("Erro: A quantidade de comida deve ser maior que 0.");
+            return; 
+        }
+        this.setEnergia(this.energia + quantidade);
+        System.out.println(this.nome + " comeu. Energia subiu para: " + this.energia);
     }
 
+    public void brincar(double esforco) {
+        if (esforco <= 0) {
+            System.out.println("Erro: Esforço para brincar é inválido.");
+            return;
+        }
+        if (this.energia < esforco) {
+            System.out.println("Erro: Energia insuficiente. " + this.nome + " está muito cansado para brincar.");
+            return;
+        }
+        this.setEnergia(this.energia - esforco);
+        System.out.println(this.nome + " brincou bastante! Energia caiu para: " + this.energia);
+    }
+
+    public void dormir() {
+        this.setEnergia(this.energia + 30.0);
+        System.out.println(this.nome + " tirou uma soneca e recuperou energia! Energia atual: " + this.energia);
+    }
 }
