@@ -11,4 +11,9 @@ public class Cachorro extends Pet {
     public void farejar() {
         System.out.println(this.getNome() + " está a farejar o chão... (Nível: " + this.nivelFaro + ")");
     }
+
+    @Override
+    public String emitirSom() {
+        return "Au Au!";
+    }
 }

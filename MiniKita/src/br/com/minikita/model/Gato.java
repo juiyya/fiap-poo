@@ -14,4 +14,8 @@ public class Gato extends Pet {
             System.out.println("... E caiu em pé, claro!");
         }
     }
+    @Override
+    public String emitirSom() {
+        return "Miau";
+    }
 }

@@ -2,20 +2,25 @@ package br.com.minikita.main;
 
 import br.com.minikita.model.Cachorro;
 import br.com.minikita.model.Gato;
+import br.com.minikita.model.Pet;
 import br.com.minikita.model.Tutor;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainPet {
     public static void main(String[] args) {
         Tutor tutora = new Tutor("Julia");
         
-        Cachorro meuCachorro = new Cachorro("Kita", tutora, 9.5);
-        Gato meuGato = new Gato("Neko", tutora);
-
-        System.out.println("Tutor Responsável: " + meuCachorro.getDono().getNome());
-        System.out.println("Meu pet 1: " + meuCachorro.getNome() + " | Espécie: " + meuCachorro.getEspecie());
-        meuCachorro.farejar(); 
+        List<Pet> meusPets = new ArrayList<>();
         
-        System.out.println("\nMeu pet 2: " + meuGato.getNome() + " | Espécie: " + meuGato.getEspecie());
-        meuGato.pular(); 
+        meusPets.add(new Cachorro("Kita", tutora, 9.5));
+        meusPets.add(new Gato("Neko", tutora));
+
+        System.out.println("=== TESTE POLIMÓRFICO: BANDA DOS PETS ===");
+
+        for (Pet pet : meusPets) {
+            System.out.print(pet.getNome() + " diz: ");
+            System.out.println(pet.emitirSom()); 
+        }
     }
 }

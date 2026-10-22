@@ -6,7 +6,6 @@ public class Pet {
     private double energia;
     private Tutor dono; 
 
-    // construtor atualizado
     public Pet(String nome, String especie, Tutor dono) {
         this.setNome(nome);
         this.setEspecie(especie);
@@ -14,9 +13,7 @@ public class Pet {
         this.setEnergia(10.0);
     }
 
-    public Tutor getDono() {
-        return this.dono;
-    }
+    public Tutor getDono() { return this.dono; }
 
     private void setEnergia(double valor) {
         if (valor > 100.0) {
@@ -36,6 +33,8 @@ public class Pet {
     public String getEspecie() { return this.especie; }
     
     private void setEspecie(String especie) { this.especie = especie; }
+
+    public String emitirSom() { return "O pet faz um barulho genérico."; }
 
     public void alimentar(double quantidade) {
         if (quantidade <= 0) {
