@@ -4,17 +4,23 @@ public class Pet {
     private String nome;
     private String especie;
     private double energia;
+    private Tutor dono; 
 
-    public Pet(String nome, String especie) {
+    // construtor atualizado
+    public Pet(String nome, String especie, Tutor dono) {
         this.setNome(nome);
         this.setEspecie(especie);
-        this.setEnergia(10.0); 
+        this.dono = dono;
+        this.setEnergia(10.0);
+    }
+
+    public Tutor getDono() {
+        return this.dono;
     }
 
     private void setEnergia(double valor) {
         if (valor > 100.0) {
             this.energia = 100.0;
-            System.out.println("Max level! A energia de " + this.nome + " está no máximo (100.0).");
         } else if (valor < 0.0) {
             this.energia = 0.0;
         } else {
@@ -22,30 +28,19 @@ public class Pet {
         }
     }
 
-    public double getEnergia() {
-        return this.energia;
-    }
+    public double getEnergia() { return this.energia; }
+    public String getNome() { return this.nome; }
 
-    public String getNome() {
-        return this.nome;
-    }
+    private void setNome(String nome) { this.nome = nome; }
 
-    private void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getEspecie() {
-        return this.especie;
-    }
-
-    private void setEspecie(String especie) {
-        this.especie = especie;
-    }
+    public String getEspecie() { return this.especie; }
+    
+    private void setEspecie(String especie) { this.especie = especie; }
 
     public void alimentar(double quantidade) {
         if (quantidade <= 0) {
             System.out.println("Erro: A quantidade de comida deve ser maior que 0.");
-            return; 
+            return;
         }
         this.setEnergia(this.energia + quantidade);
         System.out.println(this.nome + " comeu. Energia subiu para: " + this.energia);
@@ -57,7 +52,7 @@ public class Pet {
             return;
         }
         if (this.energia < esforco) {
-            System.out.println("Erro: Energia insuficiente. " + this.nome + " está muito cansado para brincar.");
+            System.out.println("Erro: Energia insuficiente para brincar.");
             return;
         }
         this.setEnergia(this.energia - esforco);
@@ -66,6 +61,6 @@ public class Pet {
 
     public void dormir() {
         this.setEnergia(this.energia + 30.0);
-        System.out.println(this.nome + " tirou uma soneca e recuperou energia! Energia atual: " + this.energia);
+        System.out.println(this.nome + " tirou uma soneca. Energia atual: " + this.energia);
     }
 }

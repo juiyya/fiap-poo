@@ -1,27 +1,23 @@
 package br.com.minikita.main;
 
 import br.com.minikita.model.Pet;
+import br.com.minikita.model.Tutor;
 
 public class MainPet {
-
     public static void main(String[] args) {
         System.out.println("----------- Iniciar Pet ------------");
-        Pet meuPet = new Pet("Kita", "Cachorro");
+        
+        // 1. Instanciar o Tutor
+        Tutor tutora = new Tutor("Julia");
+        
+        // 2. Instanciar o Pet com Associação ao Tutor
+        Pet meuPet = new Pet("Kita", "Cachorro", tutora);
 
+        // 3. Provar que a Associação funciona lendo um dado do objeto associado
+        System.out.println("Tutor Responsável: " + meuPet.getDono().getNome());
         System.out.println("Pet: " + meuPet.getNome() + " | Espécie: " + meuPet.getEspecie());
-        System.out.println("Energia Inicial: " + meuPet.getEnergia());
         System.out.println("------------------------------------\n");
 
-        meuPet.brincar(15.0);       // erro (inicia com 10, esforço é 15)
-        
-        System.out.println("\n--- Hora de comer ---");
-        meuPet.alimentar(20.0);     // sobe para 30
-        meuPet.brincar(15.0);       // cai para 15
-        
-        System.out.println("\n--- Hora de dormir ---");
-        meuPet.dormir();            // sobe para 45
-        
-        System.out.println("\n--- Testando a Regra de Limite (Max 100) ---");
-        meuPet.alimentar(150.0);    // força energia acima do limite
+        meuPet.alimentar(20.0);
     }
 }
