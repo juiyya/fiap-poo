@@ -1,10 +1,10 @@
 package br.com.minikita.model;
 
-public abstract class Pet {
+public abstract class Pet implements Brincavel {
     private String nome;
     private String especie;
     private double energia;
-    private Tutor dono; 
+    private Tutor dono;
 
     public Pet(String nome, String especie, Tutor dono) {
         this.setNome(nome);
@@ -13,7 +13,14 @@ public abstract class Pet {
         this.setEnergia(10.0);
     }
 
-    public Tutor getDono() { return this.dono; }
+    @Override
+    public void iniciarBrincadeira() {
+        this.brincar(15.0); // Aproveita a lógica de gasto de energia já feita
+    }
+
+    public Tutor getDono() {
+        return this.dono;
+    }
 
     private void setEnergia(double valor) {
         if (valor > 100.0) {
@@ -26,16 +33,26 @@ public abstract class Pet {
     }
 
     public abstract String emitirSom();
-    
-    public double getEnergia() { return this.energia; }
-    public String getNome() { return this.nome; }
 
-    private void setNome(String nome) { this.nome = nome; }
+    public double getEnergia() {
+        return this.energia;
+    }
 
-    public String getEspecie() { return this.especie; }
-    
-    private void setEspecie(String especie) { this.especie = especie; }
+    public String getNome() {
+        return this.nome;
+    }
 
+    private void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getEspecie() {
+        return this.especie;
+    }
+
+    private void setEspecie(String especie) {
+        this.especie = especie;
+    }
 
     public void alimentar(double quantidade) {
         if (quantidade <= 0) {

@@ -1,26 +1,28 @@
 package br.com.minikita.main;
 
+import br.com.minikita.model.Brincavel;
 import br.com.minikita.model.Cachorro;
-import br.com.minikita.model.Gato;
-import br.com.minikita.model.Pet;
+import br.com.minikita.model.VideoGame;
 import br.com.minikita.model.Tutor;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainPet {
     public static void main(String[] args) {
+        System.out.println("=== TESTE DE INTERFACES ===");
+
         Tutor tutora = new Tutor("Julia");
-        
-        List<Pet> meusPets = new ArrayList<>();
-        
-        meusPets.add(new Cachorro("Kita", tutora, 9.5));
-        meusPets.add(new Gato("Neko", tutora));
+        Cachorro meuCachorro = new Cachorro("Kita", tutora, 9.5);
 
-        System.out.println("=== TESTE POLIMÓRFICO: BANDA DOS PETS ===");
+        meuCachorro.alimentar(50); // dar energia antes de brincar
 
-        for (Pet pet : meusPets) {
-            System.out.print(pet.getNome() + " diz: ");
-            System.out.println(pet.emitirSom()); 
+        VideoGame nintendo = new VideoGame("Nintendo Switch");
+
+        // array tipado pela INTERFACE, agrupando dois objetos que não são parentes
+        Brincavel[] opcoesDeLazer = new Brincavel[] { meuCachorro, nintendo };
+
+        System.out.println("\nIniciando as brincadeiras:");
+        for (Brincavel lazer : opcoesDeLazer) {
+            lazer.iniciarBrincadeira();
+            System.out.println("---");
         }
     }
 }
