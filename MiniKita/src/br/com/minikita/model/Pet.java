@@ -1,6 +1,6 @@
 package br.com.minikita.model;
 
-public class Pet {
+public abstract class Pet {
     private String nome;
     private String especie;
     private double energia;
@@ -25,6 +25,8 @@ public class Pet {
         }
     }
 
+    public abstract String emitirSom();
+    
     public double getEnergia() { return this.energia; }
     public String getNome() { return this.nome; }
 
@@ -34,7 +36,6 @@ public class Pet {
     
     private void setEspecie(String especie) { this.especie = especie; }
 
-    public String emitirSom() { return "O pet faz um barulho genérico."; }
 
     public void alimentar(double quantidade) {
         if (quantidade <= 0) {
