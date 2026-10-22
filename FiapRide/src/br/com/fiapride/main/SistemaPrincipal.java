@@ -1,25 +1,24 @@
 package br.com.fiapride.main;
 
-import br.com.fiapride.model.Passageiro;
-import br.com.fiapride.model.Veiculo;
-import br.com.fiapride.model.Viagem;
+import br.com.fiapride.model.Carro;
+import br.com.fiapride.model.Moto;
 
 public class SistemaPrincipal {
     public static void main(String[] args) {
-        System.out.println("--- FIAPRIDE ---\n");
+        System.out.println("--- FIAPRIDE: Teste de Frota ---\n");
 
-        // 1. Criar os atores independentes
-        Passageiro ana = new Passageiro("Ana Silva", "222.222.222-22");
-        Veiculo carroDoJoao = new Veiculo("ABC-1234", "Toyota Corolla");
+        // 1. Instanciando os objetos específicos
+        int quantidadePassageiro = 4;
+        Carro uberX = new Carro("ABC-1234", "Chevrolet Onix", quantidadePassageiro);
+        Moto mottu = new Moto("ABC-9999", "Caloi City", true);
 
-        // 2. Associar os objetos criando a Viagem
-        Viagem viagemDaAna = new Viagem("Avenida Paulista, 1000", ana, carroDoJoao);
+        // 2. O TESTE: Um Carro consegue acessar getPlaca() da mãe?  
+        System.out.println("Carro modelo: " + uberX.getModelo() + " | Placa: " + uberX.getPlaca());
+        System.out.println("Vagas para passageiros: " + uberX.getCapacidadePassageiros());
 
-        // 3. testando se os objetos conversam 
-        viagemDaAna.exibirResumo();
-
-        // 4. Prova da Passagem por Referência
-        ana.adicionarSaldo(50.0);
-        System.out.println("Saldo da Ana consultado ATRAVÉS da Viagem: R$ " + viagemDaAna.getSolicitante().getSaldo());
+        System.out.println("\nMoto modelo: " + mottu.getModelo() + " | Placa: " + mottu.getPlaca());
+        if (mottu.isEletrica()) {
+            System.out.println("Atenção: Esta moto é elétrica e atinge maiores velocidades!");
+        }
     }
 }
