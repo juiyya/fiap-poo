@@ -1,6 +1,6 @@
 package br.com.fiapride.model;
 
-public class Veiculo {
+public abstract class Veiculo {
     
     // atributos privados (encapsulamento)
     private String placa;
@@ -16,6 +16,8 @@ public class Veiculo {
 
     public String getPlaca() { return this.placa; }
     public String getModelo() { return this.modelo; }
+
+    public abstract void exibirTipo();
 
     // COMPORTAMENTO PÚBLICO
     public void atualizarPlaca(String novaPlaca) {

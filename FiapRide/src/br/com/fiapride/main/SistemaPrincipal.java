@@ -1,31 +1,35 @@
 package br.com.fiapride.main;
 
-import br.com.fiapride.model.*;
-import java.util.ArrayList;
-import java.util.List;
+import br.com.fiapride.model.Carro;
+import br.com.fiapride.model.Moto;
+import br.com.fiapride.model.Veiculo;
 
 public class SistemaPrincipal {
     public static void main(String[] args) {
-        // 1. Criamos uma lista da SUPERCLASSE que aceita qualquer herdeiro
-        List<Veiculo> frota = new ArrayList<>();
-        
-        // CORREÇÃO: Adicionado o 3º parâmetro exigido pelos construtores da Aula 6
-        // Carro exige: placa, modelo, capacidadePassageiros
-        frota.add(new Carro("ABC-1234", "Honda Civic", 4));
-        
-        // Moto exige: placa, modelo, isEletrica
-        frota.add(new Moto("DEF-5678", "Honda CG 160", false));
+        System.out.println("=== FIAPRIDE: Teste de Classes Abstratas ===\n");
 
-        System.out.println("--- RELATÓRIO DE AUTONOMIA DA FROTA ---");
-        
-        // O mesmo comando produz resultados diferentes!
-        for (Veiculo veiculo : frota) {
-            System.out.println("Veiculo: " + veiculo.getModelo());
-            
-            // se for Carro, usa a conta do carro. Se for Moto, usa a da moto.
-            veiculo.abastecer(50);
-            System.out.println(veiculo.calcularAutonomia());
-            System.out.println("---------------------------------------");
+        // TESTE 1: Tentar criar Veiculo direto 
+        // Veiculo v = new Veiculo("ABC-1234", "Generico"); 
+
+        // TESTE 2: Criar objetos concretos
+        Veiculo taxi = new Carro("ABC-1234", "Chevrolet Onix", 4);
+        Veiculo mototaxi = new Moto("MOT-9999", "Honda Biz", false);
+
+        System.out.println("Identificação dos Veículos:");
+        taxi.exibirTipo();     
+        mototaxi.exibirTipo(); 
+
+        System.out.println("\n=== Polimorfismo com Classe Abstrata ===");
+
+        Veiculo[] frota = new Veiculo[] {
+            new Carro("CAR-1111", "Fiat Uno", 5),
+            new Moto("MOT-2222", "Yamaha", false),
+            new Carro("CAR-3333", "Honda Civic", 5)
+        };
+
+        for (Veiculo v : frota) {
+            v.exibirTipo();
+            System.out.println("---");
         }
     }
 }

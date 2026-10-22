@@ -1,6 +1,12 @@
 package br.com.fiapride.model;
 
 public class Carro extends Veiculo {
+    
+    @Override
+    public void exibirTipo() {
+        System.out.println("Sou um Carro");
+    }
+    
     // atributo exclusivo do Carro (a mae n tem isso)
     private int capacidadePassageiros;
 

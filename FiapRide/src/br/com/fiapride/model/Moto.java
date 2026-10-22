@@ -1,6 +1,12 @@
 package br.com.fiapride.model;
 
 public class Moto extends Veiculo {
+
+    @Override
+    public void exibirTipo() {
+        System.out.println("Sou uma Moto");
+    }
+
     private boolean isEletrica;
 
     public Moto(String placa, String modelo, boolean isEletrica) {
