@@ -5,6 +5,7 @@ public class Veiculo {
     // atributos privados (encapsulamento)
     private String placa;
     private String modelo;
+    private double nivelCombustivel;
 
     // construtor
     public Veiculo(String placa, String modelo) {
@@ -13,20 +14,28 @@ public class Veiculo {
         System.out.println("Registro inicial: Um " + this.modelo + " nasceu com a placa " + this.placa);
     }
 
-    // getters apenas leitura
-    public String getPlaca() {
-        return this.placa;
-    }
-
-    public String getModelo() {
-        return this.modelo;
-    }
+    public String getPlaca() { return this.placa; }
+    public String getModelo() { return this.modelo; }
 
     // COMPORTAMENTO PÚBLICO
-    // Este é o método que o programa principal vai chamar. Ele representa uma ação real.
     public void atualizarPlaca(String novaPlaca) {
         System.out.println("Solicitada atualização de placa no Detran para o veiculo " + this.modelo + "...");
         this.setPlaca(novaPlaca); 
+    }
+
+    public String calcularAutonomia() {
+        return "Autonomia não definida para um veículo genérico.";
+    }
+    public void abastecer(int quantidade) {
+        this.setNivelCombustivel(this.getNivelCombustivel() + quantidade);
+    }
+
+    public double getNivelCombustivel() {
+        return this.nivelCombustivel;
+    }
+
+    private void setNivelCombustivel(double nivelCombustivel) {
+        this.nivelCombustivel = nivelCombustivel;
     }
 
     // SETTERS PRIVADOS
